@@ -1,4 +1,10 @@
-<?php include "./common/header.php"; ?>
+<?php
+$path = '//' . $_SERVER['SERVER_NAME'];
+$path .= $_SERVER['SERVER_PORT'] == '80' ? '' : ':' . $_SERVER['SERVER_PORT'];
+$path .= DIRECTORY_SEPARATOR;
+
+include "./common/header.php";
+?>
 
 <div class="container">
     <div class="row">

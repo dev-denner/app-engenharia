@@ -7,13 +7,13 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="manifest" href="../site.webmanifest">
+        <link rel="manifest" href="<?php echo $path; ?>../site.webmanifest">
         <link rel="apple-touch-icon" href="icon.png">
-        <link rel="stylesheet" href="../assets/css/normalize.css">
-        <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="<?php echo $path; ?>../assets/css/normalize.css">
+        <link rel="stylesheet" href="<?php echo $path; ?>../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
-        <link rel="stylesheet" href="../assets/css/main.css">
+        <link rel="stylesheet" href="<?php echo $path; ?>../assets/css/main.css">
         <meta name="theme-color" content="#fafafa">
     </head>
 
@@ -23,8 +23,8 @@
       <![endif]-->
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="../index.php">
-                <img src="../assets/img/reciclagem.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <a class="navbar-brand" href="<?php echo $path; ?>../index.php">
+                <img src="<?php echo $path; ?>../assets/img/reciclagem.png" width="30" height="30" class="d-inline-block align-top" alt="">
                 Waste Online</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -33,16 +33,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../pages/grupos.php">Grupos</a>
+                        <a class="nav-link" href="<?php echo $path; ?>../pages/grupos.php">Grupos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../pages/users.php">Usuários</a>
+                        <a class="nav-link" href="<?php echo $path; ?>../pages/users.php">Usuários</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../pages/pontuacao.php">Pontuação</a>
+                        <a class="nav-link" href="<?php echo $path; ?>../pages/pontuacao.php">Pontuação</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../pages/fechamento.php">Encerrar Arrecadação</a>
+                        <a class="nav-link" href="<?php echo $path; ?>../pages/fechamento.php">Encerrar Arrecadação</a>
                     </li>
                 </ul>
             </div>
