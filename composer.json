@@ -1,0 +1,37 @@
+{
+    "name": "denners777/app-engenharia",
+    "description": "Projeto para o Núcleo 2 do Grupo 3 de Engenharias do Centro Universitário Celso Lisboa em 20191",
+    "keywords": [],
+    "homepage": "http://ec2-54-201-177-167.us-west-2.compute.amazonaws.com/waste-online/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Denner Fernandes",
+            "email": "denners777@hotmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "slim/slim": "^3.1",
+        "slim/php-view": "^2.0",
+        "monolog/monolog": "^1.17",
+        "vlucas/phpdotenv": "^2.4",
+        "slim/twig-view": "^2.5"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.1",
+        "symfony/console": "^4.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "./src"
+        }
+    },
+    "config": {
+        "process-timeout": 0,
+        "sort-packages": true
+    },
+    "scripts": {
+        "start": "php -S localhost:8080 -t"
+    }
+}

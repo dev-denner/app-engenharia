@@ -1,5 +1,6 @@
-<?php include "../common/header.php"; ?>
+{% extends "base.phtml" %}
 
+{% block content %}
 <div class="container">
     <h2 class="display-4 text-center">Grupos</h2>
     <div class="row">
@@ -36,7 +37,8 @@
                 <div class="form-group col-sm-10">
                     <input type="hidden" name="id_grupo" value="" />
                     <label for="nome_grupo" class="sr-only">Nome:</label>
-                    <input type="text" class="form-control" id="nome_grupo" name="nome_grupo" aria-describedby="nomeHelp" placeholder="Nome">
+                    <input type="text" class="form-control" id="nome_grupo" name="nome_grupo"
+                        aria-describedby="nomeHelp" placeholder="Nome">
                     <small id="nomeHelp" class="form-text text-muted">Nome do grupo.</small>
                 </div>
                 <div class="form-group col-sm-2">
@@ -45,7 +47,6 @@
             </form>
         </div>
     </div>
-
 </div>
 
-<?php include "../common/footer.php"; ?>
+{% endblock %}

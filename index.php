@@ -1,100 +1,34 @@
 <?php
-$path = '//' . $_SERVER['SERVER_NAME'];
-$path .= $_SERVER['SERVER_PORT'] == '80' ? '' : ':' . $_SERVER['SERVER_PORT'];
-$path .= DIRECTORY_SEPARATOR;
+if (PHP_SAPI == 'cli-server') {
+    $url  = parse_url($_SERVER['REQUEST_URI']);
+    $file = __DIR__ . $url['path'];
+    if (is_file($file)) {
+        return false;
+    }
+}
 
-include "./common/header.php";
-?>
+require __DIR__ . '/vendor/autoload.php';
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-5">
-            <canvas id="ChartPie" width="400" height="400"></canvas>
-        </div>
-        <div class="col"></div>
-        <div class="col-sm-5">
-            <canvas id="ChartColunns" width="400" height="400"></canvas>
-        </div>
-    </div>
-</div>
+session_start();
 
-<?php include "./common/footer.php"; ?>
-<script>
-    $(document).ready(function () {
-        var ctxp = document.getElementById('ChartPie').getContext('2d');
-        var ctxl = document.getElementById('ChartColunns').getContext('2d');
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
 
-        var myChartp = new Chart(ctxp, {
-            type: 'pie',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                }
-            }
-        });
-        var myChartl = new Chart(ctxl, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
-                        }]
-                }
-            }
-        });
-    });
-</script>
+if (getenv('DEBUG')) {
+    error_reporting(E_ALL);
+    ini_set('display_errors', true);
+}
+
+$settings = require __DIR__ . '/src/settings.php';
+$app = new \Slim\App($settings);
+
+$dependencies = require __DIR__ . '/src/dependencies.php';
+$dependencies($app);
+
+$middleware = require __DIR__ . '/src/middleware.php';
+$middleware($app);
+
+$routes = require __DIR__ . '/src/routes.php';
+$routes($app);
+
+$app->run();

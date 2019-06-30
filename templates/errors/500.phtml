@@ -1,0 +1,23 @@
+{% extends "base.phtml" %}
+{% block title_page %}Erro Interno: 500{% endblock %}
+{% block content %}
+<div class="page-wrap d-flex flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center">
+                <span class="display-1 d-block">500</span>
+                <div class="mb-4 lead">Ops!!! <small>Algo deu errado.</small></div>
+                <p>Copie as informações abaixo e envie para a equipe de Sistemas.</p>
+                <br />
+                <ul class="list-group text-left">
+                    <li class="list-group-item"><b>Código:</b> {{ exception.getCode() }}</li>
+                    <li class="list-group-item"><b>Arquivo:</b> {{ exception.getFile() }}</li>
+                    <li class="list-group-item"><b>Linha:</b> {{ exception.getLine() }}</li>
+                    <li class="list-group-item"><b>Mensagem:</b> {{ exception.getMessage() }}</li>
+                    <li class="list-group-item"><b>Trace:</b> {{ exception.getTraceAsString() }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
