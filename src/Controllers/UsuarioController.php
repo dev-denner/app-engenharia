@@ -5,18 +5,18 @@ namespace App\Controllers;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class GrupoController extends BaseController
+class UsuarioController extends BaseController
 {
 
     public function __construct($container)
     {
         parent::__construct($container);
-        $this->data['title_page'] = 'Grupo';
-        $this->data['active_grupo'] = 'active';
+        $this->data['title_page'] = 'Usuário';
+        $this->data['active_usuario'] = 'active';
     }
 
     public function index(Request $request, Response $response, $args)
     {
-        return $this->view->render($response, 'grupo.phtml', $this->data);
+        return $this->view->render($response, 'usuario.phtml', $this->data);
     }
 }

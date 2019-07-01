@@ -11,7 +11,7 @@
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="stylesheet" href="{{ url }}assets/css/normalize.css">
     <link rel="stylesheet" href="{{ url }}node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url }}node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
     <link rel="stylesheet" href="{{ url }}assets/css/main.css">
     <meta name="theme-color" content="#fafafa">
@@ -34,16 +34,16 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li class="nav-item {{ active_grupo }}">
                     <a class="nav-link" href="grupos">Grupos</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ active_usuario }}">
                     <a class="nav-link" href="usuarios">Usuários</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ active_pontuacao }}">
                     <a class="nav-link" href="pontuacao">Pontuação</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ active_fechamento }}">
                     <a class="nav-link" href="fechamento">Encerrar Arrecadação</a>
                 </li>
             </ul>
@@ -65,6 +65,9 @@
     <script src="{{ url }}assets/js/main.js"></script>
 
 </body>
+
+
+
 
 
 

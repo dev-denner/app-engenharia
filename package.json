@@ -12,8 +12,9 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "bootstrap": "^3.3.7",
-        "inputmask": "^4.0.0",
-        "@fortawesome/fontawesome-free": "^5.9.0"
+        "@fortawesome/fontawesome-free": "^5.9.0",
+        "bootstrap": "^4.3.1",
+        "inputmask": "^4.0.8",
+        "jquery": "^3.4.1"
     }
 }

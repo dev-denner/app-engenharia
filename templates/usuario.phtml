@@ -1,0 +1,85 @@
+{% extends "base.phtml" %}
+
+{% block content %}
+
+<div class="container">
+    <h2 class="display-4 text-center mb-4">Usuários</h2>
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="table-responsive">
+                <table class="table table-striped table-borderless table-sm">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Apto</th>
+                            <th scope="col">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>José Alvares</td>
+                            <td>jose.alvares@gmail.com</td>
+                            <td>Bl. 01 / 103</td>
+                            <td>
+                                <a class="btn btn-sm btn-warning" href="#" role="button">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a class="btn btn-sm btn-danger" href="#" role="button">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Sandra Ferreira</td>
+                            <td>sandra.ferreira.outlook.com</td>
+                            <td>Bl. 03 / 309</td>
+                            <td>
+                                <a class="btn btn-sm btn-warning" href="#" role="button">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a class="btn btn-sm btn-danger" href="#" role="button">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col">
+            <form>
+                <input type="hidden" name="id_usuario" value="" />
+                <div class="form-group">
+                    <label for="nome_usuario" class="sr-only">Nome:</label>
+                    <input type="text" class="form-control" id="nome_usuario" name="nome_usuario"
+                        aria-describedby="nomeHelp" placeholder="Nome">
+                    <small id="nomeHelp" class="form-text text-muted">Nome do usuário.</small>
+                </div>
+                <div class="form-group">
+                    <label for="email_usuario" class="sr-only">E-mail:</label>
+                    <input type="email" class="form-control" id="email_usuario" name="email_usuario"
+                        aria-describedby="emailHelp" placeholder="E-mail">
+                    <small id="emailHelp" class="form-text text-muted">E-mail do usuário.</small>
+                </div>
+                <div class="form-group">
+                    <label for="apto_usuario" class="sr-only">Nome:</label>
+                    <input type="text" class="form-control" id="apto_usuario" name="apto_usuario"
+                        aria-describedby="aptoHelp" placeholder="Apto">
+                    <small id="aptoHelp" class="form-text text-muted">Apartamento do usuário.</small>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Gravar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
