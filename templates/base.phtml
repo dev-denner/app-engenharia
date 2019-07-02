@@ -35,22 +35,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item {{ active_grupo }}">
-                    <a class="nav-link" href="grupos">Grupos</a>
+                    <a class="nav-link" href="{{ url }}grupos">Grupos</a>
                 </li>
                 <li class="nav-item {{ active_usuario }}">
-                    <a class="nav-link" href="usuarios">Usuários</a>
+                    <a class="nav-link" href="{{ url }}usuarios">Usuários</a>
                 </li>
                 <li class="nav-item {{ active_pontuacao }}">
-                    <a class="nav-link" href="pontuacao">Pontuação</a>
+                    <a class="nav-link" href="{{ url }}pontuacao">Pontuação</a>
                 </li>
                 <li class="nav-item {{ active_fechamento }}">
-                    <a class="nav-link" href="fechamento">Encerrar Arrecadação</a>
+                    <a class="nav-link" href="{{ url }}fechamento">Encerrar Arrecadação</a>
                 </li>
             </ul>
         </div>
     </nav>
 
     {% block content %}{% endblock %}
+    <input type="hidden" id="base_url" value="{{ url }}" />
     <script src="{{ url }}assets/js/vendor/modernizr-3.7.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
@@ -58,6 +59,7 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="{{ url }}node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     {% block js %}{% endblock %}

@@ -12,7 +12,7 @@ return function (App $app) {
 
     $container['logger'] = function ($c) {
         $settings = $c->get('settings')['logger'];
-        $logger = new \Monolog\Logger($settings['name']);
+        $logger   = new \Monolog\Logger($settings['name']);
         $logger->pushProcessor(new \Monolog\Processor\UidProcessor());
         $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
         return $logger;
@@ -30,6 +30,10 @@ return function (App $app) {
         $view->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
 
         return $view;
+    };
+
+    $container['flash'] = function () {
+        return new \Slim\Flash\Messages();
     };
 
     return $container;
