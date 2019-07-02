@@ -42,7 +42,7 @@ class GrupoController extends BaseController
         if (!$return) {
             $this->flash->addMessage('Tente novamente!', 'Não foi possível criar um novo Grupo');
         }
-        return $response->withRedirect('/grupos');
+        return $response->withRedirect($this->data['url'] . 'grupos');
     }
 
     public function update(Request $request, Response $response, $args)
@@ -52,7 +52,7 @@ class GrupoController extends BaseController
         if (!$return) {
             $this->flash->addMessage('Tente novamente!', 'Não foi possível atualizar o Grupo');
         }
-        return $response->withRedirect('/grupos');
+        return $response->withRedirect($this->data['url'] . 'grupos');
     }
 
     public function destroy(Request $request, Response $response, $args)

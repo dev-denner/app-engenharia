@@ -45,7 +45,7 @@ class UsuarioController extends BaseController
         if (!$return) {
             $this->flash->addMessage('Tente novamente!', 'Não foi possível criar um novo Usuário');
         }
-        return $response->withRedirect('/usuarios');
+        return $response->withRedirect($this->data['url'] . 'usuarios');
     }
 
     public function update(Request $request, Response $response, $args)
@@ -55,7 +55,7 @@ class UsuarioController extends BaseController
         if (!$return) {
             $this->flash->addMessage('Tente novamente!', 'Não foi possível atualizar o Usuário');
         }
-        return $response->withRedirect('/usuarios');
+        return $response->withRedirect($this->data['url'] . 'usuarios');
     }
 
     public function destroy(Request $request, Response $response, $args)
