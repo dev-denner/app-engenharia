@@ -4,11 +4,6 @@ namespace App\Models;
 
 class Grupo extends BaseModel
 {
-    /**
-     *
-     * @var string
-     */
-    public $table = 'grupo';
 
     /**
      *
@@ -24,7 +19,7 @@ class Grupo extends BaseModel
      */
     public function get()
     {
-        $sql = "SELECT id, nome FROM {$this->table}";
+        $sql = "SELECT id, nome FROM grupo";
         return $this->select($sql);
     }
 
@@ -35,7 +30,7 @@ class Grupo extends BaseModel
      */
     public function getById(int $id)
     {
-        $sql = "SELECT id, nome FROM {$this->table} WHERE id = :id";
+        $sql = "SELECT id, nome FROM grupo WHERE id = :id";
         return $this->select($sql, ['id' => $id]);
     }
 
@@ -47,7 +42,7 @@ class Grupo extends BaseModel
     public function store(array $data)
     {
         unset($data['id']);
-        return  parent::create($this->table, $data);
+        return parent::create('grupo', $data);
     }
 
     /**
@@ -58,7 +53,7 @@ class Grupo extends BaseModel
      */
     public function atualiza(array $data, int $id)
     {
-        return  parent::update($this->table, $data, ['id' => $id]);
+        return parent::update('grupo', $data, ['id' => $id]);
     }
 
     /**
@@ -68,6 +63,6 @@ class Grupo extends BaseModel
      */
     public function delete(int $id)
     {
-        return  parent::destroy($this->table, ['id' => $id]);
+        return parent::destroy('grupo', ['id' => $id]);
     }
 }

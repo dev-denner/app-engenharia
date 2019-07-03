@@ -6,12 +6,6 @@ class Usuario extends BaseModel
 {
     /**
      *
-     * @var string
-     */
-    public $table = 'usuario';
-
-    /**
-     *
      */
     public function __construct()
     {
@@ -25,7 +19,7 @@ class Usuario extends BaseModel
     public function get()
     {
         $sql = "SELECT us.id, us.nome, us.email, us.endereco, us.cd_grupo, gr.nome grupo
-                FROM {$this->table} us
+                FROM usuario us
                 INNER JOIN grupo gr
                     ON us.cd_grupo = gr.id";
         return $this->select($sql);
@@ -39,7 +33,7 @@ class Usuario extends BaseModel
     public function getById(int $id)
     {
         $sql = "SELECT us.id, us.nome, us.email, us.endereco, us.cd_grupo, gr.nome grupo
-                FROM {$this->table} us
+                FROM usuario us
                 INNER JOIN grupo gr
                     ON us.cd_grupo = gr.id
                 WHERE us.id = :id";
@@ -54,7 +48,7 @@ class Usuario extends BaseModel
     public function store(array $data)
     {
         unset($data['id']);
-        return parent::create($this->table, $data);
+        return parent::create('usuario', $data);
     }
 
     /**
@@ -65,7 +59,7 @@ class Usuario extends BaseModel
      */
     public function atualiza(array $data, int $id)
     {
-        return parent::update($this->table, $data, ['id' => $id]);
+        return parent::update('usuario', $data, ['id' => $id]);
     }
 
     /**
@@ -75,6 +69,6 @@ class Usuario extends BaseModel
      */
     public function delete(int $id)
     {
-        return parent::destroy($this->table, ['id' => $id]);
+        return parent::destroy('usuario', ['id' => $id]);
     }
 }

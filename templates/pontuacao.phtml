@@ -18,42 +18,26 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for ponto in pontuacao %}
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Grupo 1</td>
-                            <td>José Alvares</td>
+                            <th scope="row">{{ ponto.id }}</th>
+                            <td>{{ ponto.grupo }}</td>
+                            <td>{{ ponto.usuario }}</td>
                             <td>
-                                <span class="badge badge-danger" title="Plástico">9,80kg</span>
-                                <span class="badge badge-warning" title="Metal">1,23kg</span>
-                                <span class="badge badge-primary" title="Papel">5,00kg</span>
-                                <span class="badge badge-success" title="Vidro">3,56kg</span>
-                                <span class="badge badge-dark" title="Óleo">1,80L</span>
+                                <span class="badge badge-danger" title="Plástico">{{ ponto.plastico | number_format(2, ',', '') }} kg</span>
+                                <span class="badge badge-warning" title="Metal">{{ ponto.metal | number_format(2, ',', '') }} kg</span>
+                                <span class="badge badge-primary" title="Papel">{{ ponto.papel | number_format(2, ',', '') }} kg</span>
+                                <span class="badge badge-success" title="Vidro">{{ ponto.vidro | number_format(2, ',', '') }} kg</span>
+                                <span class="badge badge-dark" title="Óleo">{{ ponto.oleo | number_format(2, ',', '') }} L</span>
                             </td>
                             <td>
-                                <a class="btn btn-sm btn-primary" href="#" role="button" data-toggle="modal"
-                                   data-target="#insertPontuacao">
+                                <a class="btn btn-sm btn-primary insert-id" href="#" role="button" data-toggle="modal"
+                                   data-target="#insertPontuacao" data-id="{{ ponto.id }}">
                                     <i class="fas fa-plus-circle"></i>
                                 </a>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Grupo 1</td>
-                            <td>Sandra Ferreira</td>
-                            <td>
-                                <span class="badge badge-danger" title="Plástico">4,07kg</span>
-                                <span class="badge badge-warning" title="Metal">7,10kg</span>
-                                <span class="badge badge-primary" title="Papel">1,40kg</span>
-                                <span class="badge badge-success" title="Vidro">1,92kg</span>
-                                <span class="badge badge-dark" title="Óleo">2,40L</span>
-                            </td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" href="#" role="button" data-toggle="modal"
-                                   data-target="#insertPontuacao">
-                                    <i class="fas fa-plus-circle"></i>
-                                </a>
-                            </td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -64,7 +48,7 @@
 <div class="modal fade" id="insertPontuacao" tabindex="-1" role="dialog" aria-labelledby="insertPontuacaoLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form>
+        <form method="post" action="{{ url }}pontuacao/">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -73,50 +57,56 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="id_pontuacao" value="" />
+                    <input type="hidden" name="id" id="id_pontuacao" value="" />
                     <div class="form-group row text-danger">
-                        <label class="col-sm-2 col-form-label" for="plastico_pontuacao">Plástico:</label>
+                        <label class="col-sm-2 col-form-label" for="plastico">Plástico:</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control text-danger" id="plastico_pontuacao"
-                                   name="plastico_pontuacao">
+                            <input type="text" class="form-control text-danger" id="plastico" name="plastico">
                         </div>
                     </div>
                     <div class="form-group row text-warning">
-                        <label class="col-sm-2 col-form-label" for="metal_pontuacao">Metal:</label>
+                        <label class="col-sm-2 col-form-label" for="metal">Metal:</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control text-warning" id="metal_pontuacao"
-                                   name="metal_pontuacao">
+                            <input type="text" class="form-control text-warning" id="metal" name="metal">
                         </div>
                     </div>
                     <div class="form-group row text-primary">
-                        <label class="col-sm-2 col-form-label" for="papel_pontuacao">Papel:</label>
+                        <label class="col-sm-2 col-form-label" for="papel">Papel:</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control text-primary" id="papel_pontuacao"
-                                   name="papel_pontuacao">
+                            <input type="text" class="form-control text-primary" id="papel" name="papel">
                         </div>
                     </div>
                     <div class="form-group row text-success">
-                        <label class="col-sm-2 col-form-label" for="vidro_pontuacao">Vidro:</label>
+                        <label class="col-sm-2 col-form-label" for="vidro">Vidro:</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control text-success" id="vidro_pontuacao"
-                                   name="vidro_pontuacao">
+                            <input type="text" class="form-control text-success" id="vidro" name="vidro">
                         </div>
                     </div>
                     <div class="form-group row text-dark">
-                        <label class="col-sm-2 col-form-label" for="oleo_pontuacao">Óleo:</label>
+                        <label class="col-sm-2 col-form-label" for="oleo">Óleo:</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control text-dark" id="oleo_pontuacao"
-                                   name="oleo_pontuacao">
+                            <input type="text" class="form-control text-dark" id="oleo" name="oleo">
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="reset" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Gravar</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+{% endblock %}
+{% block js %}
+<script>
+$(document).ready(function () {
+    $(document).off("click", ".insert-id");
+    $(document).on("click", ".insert-id", function () {
+        const id = $(this).data('id');
+        $('#id_pontuacao').val(id);
+    });
+});
+</script>
 {% endblock %}

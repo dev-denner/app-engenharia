@@ -24,8 +24,13 @@ return function (App $app) {
         $this->post('/{id:[0-9]+}/del', '\App\Controllers\UsuarioController:destroy');
     });
 
+    $app->group('/pontuacao',
+        function () {
+        $this->get('', '\App\Controllers\PontuacaoController:index');
+        $this->post('', '\App\Controllers\PontuacaoController:update');
+    });
+
     $app->get('/login', '\App\Controllers\LoginController:index');
-    $app->get('/pontuacao', '\App\Controllers\PontuacaoController:index');
     $app->get('/fechamento', '\App\Controllers\FechamentoController:index');
 
     return $app;
