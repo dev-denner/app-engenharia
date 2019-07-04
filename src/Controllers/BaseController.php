@@ -19,8 +19,14 @@ class BaseController
         $uri = explode('/', $_SERVER['REQUEST_URI']);
 
         if (end($uri) !== 'login') {
-            if (!isset($_SESSION['user_logged_in'])) {
-                header('location: ' . $this->data['url'] . 'login');
+            $agent = 'admin';
+            $url = '';
+            if ($uri[count($uri) - 2] == 'cliente') {
+                $url = 'cliente/';
+                $agent = 'cliente';
+            }
+            if (!isset($_SESSION[$agent . '_logged_in'])) {
+                header('location: ' . $this->data['url'] . $url . 'login');
                 exit();
             }
         }

@@ -40,6 +40,12 @@ class Usuario extends BaseModel
         return $this->select($sql, ['id' => $id]);
     }
 
+    public function getByEmail($email)
+    {
+        $sql = "SELECT * FROM usuario WHERE email = :email";
+        return $this->select($sql, ['email' => $email]);
+    }
+
     /**
      *
      * @param array $data

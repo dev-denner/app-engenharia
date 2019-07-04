@@ -18,17 +18,14 @@
         </button>
     </div>
     {% endfor %}
-    <form class="form-signin" method="post" action="{{ url }}login">
+    <form class="form-signin" method="post" action="{{ url }}cliente/login">
         <img class="mb-4" src="{{ url }}assets/img/reciclagem.png" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Waste Online</h1>
-        <label for="usuario" class="sr-only">Usuário</label>
-        <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuário" required autofocus>
-        <label for="senha" class="sr-only">Senha</label>
-        <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+        <label for="email" class="sr-only">E-mail</label>
+        <input type="text" id="email" name="email" class="form-control" placeholder="E-mail" required autofocus>
+        <button class="btn btn-lg btn-primary btn-block mt-2" type="submit">Entrar</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
     </form>
-    <a href="{{ url }}cliente/login" class="btn btn-link text-center">Acesso do Cliente</a>
 </div>
 
 {% endblock %}

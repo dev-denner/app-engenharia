@@ -11,11 +11,13 @@ class NotAllowedHandler extends NotAllowed
 
     private $container;
     private $methods;
+    private $data;
 
     public function __construct($container, $methods)
     {
         $this->container = $container;
         $this->methods = $methods;
+        $this->data['url'] = getenv('BASEURI');
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response)

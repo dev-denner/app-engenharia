@@ -47,9 +47,22 @@ return function (App $app) {
     $app->group(
         '/login',
         function () {
-            $this->get('', '\App\Controllers\LoginController:index');
-            $this->post('', '\App\Controllers\LoginController:logon');
+            $this->get('', '\App\Controllers\LoginController:indexAdmin');
+            $this->post('', '\App\Controllers\LoginController:logonAdmin');
             $this->get('/logout', '\App\Controllers\LoginController:logout');
+        }
+    );
+    $app->group(
+        '/cliente',
+        function () {
+            $this->group(
+                '/login',
+                function () {
+                    $this->get('', '\App\Controllers\LoginController:indexClient');
+                    $this->post('', '\App\Controllers\LoginController:logonClient');
+                }
+            );
+            $this->get('/index', '\App\Controllers\IndexController:indexClient');
         }
     );
 

@@ -10,17 +10,19 @@ class NotFoundHandler extends NotFound
 {
 
     protected $container;
+    private $data;
 
     public function __construct($container)
     {
         $this->container = $container;
+        $this->data['url'] = getenv('BASEURI');
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
     {
         parent::__invoke($request, $response);
         $view = $this->container->get('view');
-        $view->render($response, 'errors/404.phtml');
+        $view->render($response, 'errors/404.phtml', $this->data);
 
         return $response->withStatus(404);
     }

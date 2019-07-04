@@ -1,0 +1,161 @@
+{% extends "base.phtml" %}
+{% block menu %}
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="index">
+        <img src="{{ url }}assets/img/reciclagem.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Waste Online
+    </a>
+    <span class="navbar-text text-center">
+        <h5>Olá {{ usuario.nome }}!</h5>
+        <small>{{ usuario.email }} <span class="badge badge-secondary">{{ usuario.endereco }}</span></small>
+    </span>
+    <ul class="navbar-nav mr-1">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url }}login/logout">Sair</a>
+        </li>
+    </ul>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="container mb-5">
+    <div class="row">
+        <div class="col-md-4 mb-4 mt-4">
+            <h2 class="text-center mb-4">Arrecadação Atual</h2>
+            <canvas id="arrecadacaoAtual" width="400" height="400" data-labels="{{ arrecadacaoAtual.labels|join('|') }}" data-data="{{ arrecadacaoAtual.values|join('|') }}"></canvas>
+        </div>
+        <div class="col-md-4 mb-4 mt-4">
+            <h2 class="text-center mb-4">Arrecadação Total</h2>
+            <canvas id="arrecadacaoTotal" width="400" height="400" data-labels="{{ arrecadacaoTotal.labels|join('|') }}" data-data="{{ arrecadacaoTotal.values|join('|') }}"></canvas>
+        </div>
+        <div class="col-md-4 mb-4 mt-4">
+            <h2 class="text-center mb-4">Valores Recebidos</h2>
+            <canvas id="valorRecebido" width="400" height="400" data-labels="{{ valorRecebido.data|join('|') }}" data-data="{{ valorRecebido.values|join('|') }}"></canvas>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script>
+    $(document).ready(function() {
+        const arrecadacaoAtual = document.getElementById('arrecadacaoAtual');
+        const arrecadacaoAtual2d = arrecadacaoAtual.getContext('2d');
+
+        const arrecadacaoAtualChart = new Chart(arrecadacaoAtual2d, {
+            type: 'pie',
+            data: {
+                labels: arrecadacaoAtual.getAttribute('data-labels').split("|"),
+                datasets: [{
+                    label: 'Arrecadação Total',
+                    data: arrecadacaoAtual.getAttribute('data-data').split("|"),
+                    backgroundColor: [
+                        '#FF2D8B',
+                        '#0AFF0A',
+                        '#F2E001',
+                        '#FB9D24',
+                        '#F10200',
+                        '#FF2E03',
+                        '#FCFF09',
+                        '#109500',
+                        '#12CADC',
+                    ],
+                    borderColor: [
+                        '#FF2D8B',
+                        '#0AFF0A',
+                        '#F2E001',
+                        '#FB9D24',
+                        '#F10200',
+                        '#FF2E03',
+                        '#FCFF09',
+                        '#109500',
+                        '#12CADC',
+                    ],
+                    borderWidth: 1
+                }],
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        const arrecadacaoTotal = document.getElementById('arrecadacaoTotal');
+        const arrecadacaoTotal2d = arrecadacaoTotal.getContext('2d');
+
+        const arrecadacaoTotalChart = new Chart(arrecadacaoTotal2d, {
+            type: 'line',
+            data: {
+                labels: arrecadacaoTotal.getAttribute('data-labels').split("|"),
+                datasets: [{
+                    label: 'Arrecadação Total',
+                    data: arrecadacaoTotal.getAttribute('data-data').split("|"),
+
+                }],
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        const valorRecebido = document.getElementById('valorRecebido');
+        const valorRecebido2d = valorRecebido.getContext('2d');
+
+        const valorRecebidoChart = new Chart(valorRecebido2d, {
+            type: 'bar',
+            data: {
+
+                labels: valorRecebido.getAttribute('data-labels').split("|"),
+                datasets: [{
+                    label: 'Valores Recebidos',
+                    data: valorRecebido.getAttribute('data-data').split("|"),
+                    backgroundColor: [
+                        '#FF2D8B',
+                        '#0AFF0A',
+                        '#F2E001',
+                        '#FB9D24',
+                        '#F10200',
+                        '#FF2E03',
+                        '#FCFF09',
+                        '#109500',
+                        '#12CADC',
+                    ],
+                    borderColor: [
+                        '#FF2D8B',
+                        '#0AFF0A',
+                        '#F2E001',
+                        '#FB9D24',
+                        '#F10200',
+                        '#FF2E03',
+                        '#FCFF09',
+                        '#109500',
+                        '#12CADC',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+    });
+</script>
+{% endblock %}

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use App\Models\Relatorio;
+use App\Models\Usuario;
 
 class IndexController extends BaseController
 {
@@ -21,5 +22,17 @@ class IndexController extends BaseController
         $this->data['arrecadacaoTotal'] = $relatorio->arrecadacaoTotal();
         $this->data['valorRecebido'] = $relatorio->valorRecebido();
         return $this->view->render($response, 'index.phtml', $this->data);
+    }
+
+    public function indexClient(Request $request, Response $response, $args)
+    {
+        $idUser = $_SESSION['user_logged_in'];
+        $usuario = (new Usuario())->getById($idUser);
+        $relatorio = new Relatorio();
+        $this->data['usuario'] = $usuario[0];
+        $this->data['arrecadacaoAtual'] = $relatorio->arrecadacaoAtualByUsuario($idUser);
+        $this->data['arrecadacaoTotal'] = $relatorio->arrecadacaoTotalByUsuario($idUser);
+        $this->data['valorRecebido'] = $relatorio->valorRecebidoByUsuario($idUser);
+        return $this->view->render($response, 'indexClient.phtml', $this->data);
     }
 }

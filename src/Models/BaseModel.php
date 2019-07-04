@@ -11,6 +11,8 @@ class BaseModel
     public function __construct()
     {
         $this->db = (new Database())->connect();
+        $sth = $this->db->prepare("SET lc_time_names = 'pt_BR'");
+        $sth->execute();
     }
 
     /**

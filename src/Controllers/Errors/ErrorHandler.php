@@ -9,10 +9,12 @@ class ErrorHandler
 {
 
     private $container;
+    private $data;
 
     public function __construct($container)
     {
         $this->container = $container;
+        $this->data['url'] = getenv('BASEURI');
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $exception)
@@ -28,7 +30,8 @@ class ErrorHandler
         );
 
         $view = $this->container->get('view');
-        $view->render($response, 'errors/500.phtml', ['exception' => $exception]);
+        $this->data['exception'] = $exception;
+        $view->render($response, 'errors/500.phtml', $this->data);
         return $response->withStatus(500);
     }
 }
