@@ -118,14 +118,4 @@ class Pontuacao extends BaseModel
 
         return parent::update('pontuacao', $atual, ['id' => $id]);
     }
-
-    /**
-     *
-     * @param int $id
-     * @return type
-     */
-    public function delete(int $id)
-    {
-        return parent::destroy('pontuacao', ['id' => $id]);
-    }
 }

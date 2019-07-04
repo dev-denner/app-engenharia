@@ -3,96 +3,143 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-sm-5">
-            <canvas id="ChartPie" width="400" height="400"></canvas>
+        <div class="col-md-4 mb-4 mt-4">
+            <h2 class="text-center mb-4">Arrecadação Atual</h2>
+            <canvas id="arrecadacaoAtual" width="400" height="400" data-labels="{{ arrecadacaoAtual.usuario|join('|') }}" data-data="{{ arrecadacaoAtual.pontuacao|join('|') }}"></canvas>
         </div>
-        <div class="col"></div>
-        <div class="col-sm-5">
-            <canvas id="ChartColunns" width="400" height="400"></canvas>
+        <div class="col-md-4 mb-4 mt-4">
+            <h2 class="text-center mb-4">Arrecadação Total</h2>
+            <canvas id="arrecadacaoTotal" width="400" height="400" data-labels="{{ arrecadacaoTotal.usuario|join('|') }}" data-data="{{ arrecadacaoTotal.pontuacao|join('|') }}"></canvas>
+        </div>
+        <div class="col-md-4 mb-4 mt-4">
+            <h2 class="text-center mb-4">Valores Recebidos</h2>
+            <canvas id="valorRecebido" width="400" height="400" data-labels="{{ valorRecebido.usuario|join('|') }}" data-data="{{ valorRecebido.valor|join('|') }}"></canvas>
         </div>
     </div>
 </div>
 {% endblock %}
 {% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 <script>
-$(document).ready(function() {
-    var ctxp = document.getElementById('ChartPie').getContext('2d');
-    var ctxl = document.getElementById('ChartColunns').getContext('2d');
+    $(document).ready(function() {
+        const arrecadacaoAtual = document.getElementById('arrecadacaoAtual');
+        const arrecadacaoAtual2d = arrecadacaoAtual.getContext('2d');
 
-    var myChartp = new Chart(ctxp, {
-        type: 'pie',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
+        const arrecadacaoAtualChart = new Chart(arrecadacaoAtual2d, {
+            type: 'pie',
+            data: {
+                labels: arrecadacaoAtual.getAttribute('data-labels').split("|"),
+                datasets: [{
+                    label: 'Arrecadação Total',
+                    data: arrecadacaoAtual.getAttribute('data-data').split("|"),
+                    backgroundColor: [
+                        '#FF2D8B',
+                        '#0AFF0A',
+                        '#F2E001',
+                        '#FB9D24',
+                        '#F10200',
+                        '#FF2E03',
+                        '#FCFF09',
+                        '#109500',
+                        '#12CADC',
+                    ],
+                    borderColor: [
+                        '#FF2D8B',
+                        '#0AFF0A',
+                        '#F2E001',
+                        '#FB9D24',
+                        '#F10200',
+                        '#FF2E03',
+                        '#FCFF09',
+                        '#109500',
+                        '#12CADC',
+                    ],
+                    borderWidth: 1
+                }],
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
             }
-        }
-    });
-    var myChartl = new Chart(ctxl, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
+        });
+
+        const arrecadacaoTotal = document.getElementById('arrecadacaoTotal');
+        const arrecadacaoTotal2d = arrecadacaoTotal.getContext('2d');
+
+        const arrecadacaoTotalChart = new Chart(arrecadacaoTotal2d, {
+            type: 'line',
+            data: {
+                labels: arrecadacaoTotal.getAttribute('data-labels').split("|"),
+                datasets: [{
+                    label: 'Arrecadação Total',
+                    data: arrecadacaoTotal.getAttribute('data-data').split("|"),
+
+                }],
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
             }
-        }
+        });
+
+        const valorRecebido = document.getElementById('valorRecebido');
+        const valorRecebido2d = valorRecebido.getContext('2d');
+
+        const valorRecebidoChart = new Chart(valorRecebido2d, {
+            type: 'bar',
+            data: {
+
+                labels: valorRecebido.getAttribute('data-labels').split("|"),
+                datasets: [{
+                    label: 'Valores Recebidos',
+                    data: valorRecebido.getAttribute('data-data').split("|"),
+                    backgroundColor: [
+                        '#FF2D8B',
+                        '#0AFF0A',
+                        '#F2E001',
+                        '#FB9D24',
+                        '#F10200',
+                        '#FF2E03',
+                        '#FCFF09',
+                        '#109500',
+                        '#12CADC',
+                    ],
+                    borderColor: [
+                        '#FF2D8B',
+                        '#0AFF0A',
+                        '#F2E001',
+                        '#FB9D24',
+                        '#F10200',
+                        '#FF2E03',
+                        '#FCFF09',
+                        '#109500',
+                        '#12CADC',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
     });
-
-
-});
 </script>
 {% endblock %}

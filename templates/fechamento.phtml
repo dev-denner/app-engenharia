@@ -2,7 +2,58 @@
 
 {% block content %}
 
+{% for key, mensagem in mensagens %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{ key }}</strong>
+    {% for msg in mensagem %}
+    {{ msg }}
+    {% endfor %}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
 <div class="container">
-    <div class="row"></div>
+    <h2 class="display-4 text-center mb-4">Fechamento</h2>
+    <div class="row">
+        <div class="col-md">
+            <h2 class="mb-4 text-center">Total: <span class="badge badge-secondary">{{ total | number_format(2, ',', '') }} kg</span></h2>
+        </div>
+        <div class="col-md-5">
+            <form class="row" method="post" action="{{ url }}fechamento">
+                <div class="form-group col-8">
+                    <input type="text" class="form-control" id="valor" name="valor" require aria-describedby="ValorHelp" placeholder="Valor Arrecadado">
+                    <small id="ValorHelp" class="form-text text-muted">Insira o valor da venda dos resíduos arrecadado</small>
+                </div>
+                <div class="form-group col-4">
+                    <button type="submit" class="btn btn-primary btn-block">Encerrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="table-responsive">
+    <table class="table table-striped table-borderless table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Usuário</th>
+                <th scope="col">Pontuação</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fecha in fechamento %}
+            <tr>
+                <th scope="row">{{ fecha.id }}</th>
+                <td>{{ fecha.usuario }}</td>
+                <td>{{ fecha.pontuacao | number_format(2, ',', '') }}</td>
+                <td>R$ {{ fecha.valor | number_format(2, ',', '') }}</td>
+                <td>{{ fecha.data_fechamento | date('d/m/Y') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 </div>
 {% endblock %}

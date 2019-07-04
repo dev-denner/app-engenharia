@@ -1,4 +1,7 @@
 <?php
+
+date_default_timezone_set('America/Sao_paulo');
+
 if (PHP_SAPI == 'cli-server') {
     $url  = parse_url($_SERVER['REQUEST_URI']);
     $file = __DIR__ . $url['path'];

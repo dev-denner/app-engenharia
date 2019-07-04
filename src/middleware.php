@@ -12,18 +12,18 @@ return function (App $app) {
         return new \App\Controllers\Errors\PhpErrorHandler(
             $container,
             function ($request, $response, $exception) use ($container) {
-            $statusCode = $exception->getCode() ? $exception->getCode() : 500;
-            $container->get('logger')->addError(
-                $exception->getMessage(),
-                [
-                    'msg'   => $exception->getMessage(),
-                    'file'  => $exception->getFile(),
-                    'line'  => $exception->getLine(),
-                    'trace' => $exception->getTraceAsString()
-                ]
-            );
-            return $container['response']->withStatus($statusCode);
-        }
+                $statusCode = $exception->getCode() ? $exception->getCode() : 500;
+                $container->get('logger')->addError(
+                    $exception->getMessage(),
+                    [
+                        'msg'   => $exception->getMessage(),
+                        'file'  => $exception->getFile(),
+                        'line'  => $exception->getLine(),
+                        'trace' => $exception->getTraceAsString()
+                    ]
+                );
+                return $container['response']->withStatus($statusCode);
+            }
         );
     };
 
@@ -31,26 +31,28 @@ return function (App $app) {
         return new \App\Controllers\Errors\ErrorHandler(
             $container,
             function ($request, $response, $exception) use ($container) {
-            $statusCode = $exception->getCode() ? $exception->getCode() : 500;
-            $container->get('logger')->addError(
-                $exception->getMessage(),
-                [
-                    'msg'   => $exception->getMessage(),
-                    'file'  => $exception->getFile(),
-                    'line'  => $exception->getLine(),
-                    'trace' => $exception->getTraceAsString()
-                ]
-            );
-            return $container['response']->withStatus($statusCode);
-        }
+                $statusCode = $exception->getCode() ? $exception->getCode() : 500;
+                $container->get('logger')->addError(
+                    $exception->getMessage(),
+                    [
+                        'msg'   => $exception->getMessage(),
+                        'file'  => $exception->getFile(),
+                        'line'  => $exception->getLine(),
+                        'trace' => $exception->getTraceAsString()
+                    ]
+                );
+                return $container['response']->withStatus($statusCode);
+            }
         );
     };
 
     $container['notAllowedHandler'] = function ($container) {
-        return new \App\Controllers\Errors\NotAllowedHandler($container,
+        return new \App\Controllers\Errors\NotAllowedHandler(
+            $container,
             function ($request, $response, $methods) use ($container) {
-            return $container['response']->withStatus(504);
-        });
+                return $container['response']->withStatus(504);
+            }
+        );
     };
 
     $container['notFoundHandler'] = function ($container) {
