@@ -141,7 +141,7 @@ class Relatorio extends BaseModel
         $relatorio = $this->select($sql, ['id' => $id]);
         $return = [];
         foreach ($relatorio as $value) {
-            $return['data'][] = $value['dataf'];
+            $return['data'][] = utf8_encode($value['dataf']);
             $return['values'][] = $value['valor'];
         }
         return $return;
