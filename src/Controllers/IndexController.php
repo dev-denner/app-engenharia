@@ -26,7 +26,7 @@ class IndexController extends BaseController
 
     public function indexClient(Request $request, Response $response, $args)
     {
-        $idUser = $_SESSION['user_logged_in'];
+        $idUser = $_SESSION['cliente_logged_in'];
         $usuario = (new Usuario())->getById($idUser);
         $relatorio = new Relatorio();
         $this->data['usuario'] = $usuario[0];
