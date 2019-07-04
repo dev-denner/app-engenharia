@@ -30,6 +30,7 @@ class LoginController extends BaseController
             $_SESSION['user_logged_in'] = true;
             return $response->withRedirect($this->data['url'] . 'index');
         }
+        $this->flash->addMessage('Não foi possível realizar o login:', 'Usuário ou senha inválido!');
         return $response->withRedirect($this->data['url'] . 'login');
     }
 

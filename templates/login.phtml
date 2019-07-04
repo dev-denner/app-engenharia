@@ -6,19 +6,18 @@
 {% block menu %} {% endblock %}
 {% block content %}
 
-{% for key, mensagem in mensagens %}
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>{{ key }}</strong>
-    {% for msg in mensagem %}
-    {{ msg }}
-    {% endfor %}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-{% endfor %}
-
 <div class="container-fluid text-center">
+    {% for key, mensagem in mensagens %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{ key }}</strong>
+        {% for msg in mensagem %}
+        {{ msg }}
+        {% endfor %}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
     <form class="form-signin" method="post" action="{{ url }}login">
         <img class="mb-4" src="./assets/img/reciclagem.png" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Waste Online</h1>
